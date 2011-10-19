@@ -34,6 +34,10 @@ a {
 	color:#A80000;
 }
 
+.smaller {
+	font-size:0.8em;
+}
+
 </style>
 
 <body>
@@ -60,34 +64,48 @@ It shows great performance for both nodejs and browsers.
 <h2>Source</h2>
 <a href="https://github.com/olado/doT">github.com/olado/doT</a>
 <p>by Laura Doktorova, MIT license</p>
-<h2>Benchmarks</h2>
-<p>
-<a href="http://jsperf.com/dom-vs-innerhtml-based-templating">See</a> how doT.js performace measures up versus all other engines.
-People are constantly adding new javascript template engine benchmarks.
-</p>
-Additional tests are available on <a href="https://github.com/olado/doT">github.com/olado/doT</a>
 <h2>Features</h2>
 <ul>
 <li>
 	no dependencies
 </li><li>
-		custom delimiters
+	custom delimiters
 </li><li>
-		runtime evaluation
+	runtime evaluation
 </li><li>
-		runtime interpolation
+	runtime interpolation
 </li><li>
-		compile-time evaluation
+	compile-time evaluation
 </li><li>
-		partials support
+	partials support
 </li><li>
-		encoding
+	encoding
 </li><li>
-		control whitespace - strip or preserve
+	control whitespace - strip or preserve
 </li><li>
-		streaming friendly
+	streaming friendly
 </li>
 </ul>
+<h2>Benchmarks</h2>
+<p>
+<a href="http://jsperf.com/dom-vs-innerhtml-based-templating">See</a> how doT.js performace measures up versus all other engines.
+People are constantly adding new javascript template engine benchmarks.
+</p>
+Additional benchmarks are available in <a href="https://github.com/olado/doT/tree/master/benchmarks">github</a>
+<div class="smaller">
+<p>
+To run the benchmarks for measuring execution of compiled templates:
+<br/>
+In the browser: navigate to benchmarks/index.html or go <a href="http://olado.github.com/doT/bench.html">here</a>
+<br/>
+With node: node benchmarks/templatesBench.js
+</p>
+<p>
+To run the benchmarks for measuring compilation speed:
+<br/>In the browser: navigate to benchmarks/genspeed.html
+<br/>
+With node: node benchmarks/compileBench.js
+</div>
 <h2>Installation</h2>
 <h3>For node.js</h3>
 <p>If you plan to use doT with node.js, you can install doT with npm:
