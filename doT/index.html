@@ -4,88 +4,89 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="description" content="doT.js - the fastest and concise javascript template engine for nodejs and browsers"/>
-
 <style>
-body {
-	background-color: #f4f4f4;
-	color:#555;
-	max-width:800px;
-	padding:20px;
-	font-size:18px;
-	margin: 0 auto;
-}
-h1 {
-	color:#708090;
-	text-shadow:0 1px 2px #fff;
-	font-size:4em;
-	text-align:center;
-}
-
-.subtitle {
-	text-align:center;
-	margin-bottom:60px;
-
-}
-
-h2 {
-	text-shadow:0 1px 2px #fff;
-}
-a {
-	color:#A80000;
-}
-
-.smaller {
-	font-size:0.8em;
-}
-
-</style>
-
+body{background-color:#f4f4f4;color:#555;max-width:800px;padding:20px;font-size:16px;font-weight:200;margin:0 auto;font-family:Helvetica Neue,arial,verdana}h1{color:#708090;text-shadow:0 1px 2px #fff;font-size:4em;text-align:center}.subtitle{text-align:center;margin-bottom:60px}h2{text-shadow:0 1px 2px #fff}h2 span{font-weight:200;font-size:14px}a{color:#a80000}.smaller{font-size:.8em}h4{margin:4px 0;font-weight:400;font-size:20px}textarea{border:1px solid lightgrey;outline:none;font-size:14px;width:96%;height:210px;padding:10px;text-align:left}.templategroup,.datagroup,.functiongroup,.resultgroup{width:48%;margin:4px 2% 4px 0;float:left;min-width:300px}.function,.result{background:#DDD;height:212px;padding:10px;font-size:14px;overflow-y:auto}.definegroup{display:none}.templategroup.withdefs .definegroup{display:block}.templategroup.withdefs .template{height:90px}textarea.defines{height:60px}.stripgroup{padding-top:8px;width:160px;float:left}code{font-size:14px;font-weight:bold}#sampletabs{list-style:none;margin:0;padding:0}#sampletabs li{float:left;margin:4px;padding:4px 8px;background:#DDD;cursor:pointer}#sampletabs li.active{background:#fa8072;color:#FFF}@media all and (max-width:740px){.templategroup,.datagroup,.functiongroup,.resultgroup{width:100%;margin-right:0}pre{overflow-x:scroll}}</style>
+</head>
 <body>
-<a href="http://github.com/olado">
-<img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+<a href="http://github.com/olado"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/5d21241b64dc708fcbb701f68f72f41e9f1fadd6/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Form me on GitHub"></a>
 
-	<h1>doT.js</h1>
-	<h2 class="subtitle">The fastest + concise javascript template engine for nodejs and browsers.</h2>
+<h1>doT.js</h1>
+<h2 class="subtitle">The fastest + concise javascript template engine<br/>for nodejs and browsers.</h2>
 
-	<h2>Origins</h2>
+<h2>Origins</h2>
 <p>
 doT.js was created in search of the fastest and concise JavaScript templating function with emphasis on performance under V8 and nodejs.
 It shows great performance for both nodejs and browsers.
 <br/>
 <p>
-	During my quest I found 2 template engines that caught my attention.
-	<br/>The first one was jQote2, a jQuery plugin, it was the first engine to break the speeds by using string concatenation and avoiding 'with' statements.
-	<br/>The second one was underscore.js which had a nicely designed extension friendly templating function.
+During my quest I found 2 template engines that caught my attention and inspired doT.
+<br/>The first one was jQote2, a jQuery plugin, it was the first engine to break the speeds by using string concatenation and avoiding 'with' statements.
+<br/>The second one was underscore.js which had a nicely designed extension friendly templating function.
 <p>
-	doT.js is a custom blend of jQote2 and underscore.js templating functions with lots of additions and performance improvements. It is fast, small and has no dependencies.
+doT.js is fast, small and has no dependencies.
 </p>
 </p>
 </p>
+
 <h2>Source</h2>
 <a href="https://github.com/olado/doT">github.com/olado/doT</a>
 <p>by Laura Doktorova, MIT license</p>
+
 <h2>Features</h2>
 <ul>
-<li>
-	no dependencies
-</li><li>
-	custom delimiters
-</li><li>
-	runtime evaluation
-</li><li>
-	runtime interpolation
-</li><li>
-	compile-time evaluation
-</li><li>
-	partials support
-</li><li>
-	encoding
-</li><li>
-	control whitespace - strip or preserve
-</li><li>
-	streaming friendly
+<li>no dependencies, 120 loc
+</li><li>extremely fast
+</li><li>custom delimiters
+</li><li>runtime evaluation
+</li><li>runtime interpolation
+</li><li>compile-time evaluation
+</li><li>partials support
+</li><li>conditionals support
+</li><li>array iterators
+</li><li>encoding
+</li><li>control whitespace - strip or preserve
+</li><li>streaming friendly
+</li><li>use it as logic-less or with logic, it is up to you
 </li>
 </ul>
+
+<h2>Usage <span>play with it, edit and see results as you type</span></h2>
+<div id="samples">
+	<ul id="sampletabs"></ul>
+	<div class="stripgroup">
+		<input id="strip" type="checkbox" checked="checked"/>
+		<label for="strip">Strip whitespaces</label>
+	</div>
+	<div style="clear:both;height:10px"></div>
+	<div class="templategroup">
+		<h4>Template</h4>
+		<textarea autocomplete="off" class="template"></textarea>
+		<div class="definegroup">
+			<h4>Compile-time defines (def)</h4>
+			<textarea autocomplete="off" class="defines"></textarea>
+		</div>
+	</div>
+	<div class="functiongroup">
+		<h4>doT.template compiles it into</h4>
+		<div class="function">
+		</div>
+	</div>
+	<div style="clear:both"></div>
+	<div class="datagroup">
+		<h4>Data</h4>
+		<textarea autocomplete="off" class="data"></textarea>
+	</div>
+	<div class="resultgroup">
+		<h4>Result</h4>
+		<div class="result">
+	</div>
+	</div>
+</div>
+<div style="clear:both"></div>
+<h3>Compile time evaluation vs Runtime evaluation</h3>
+You can improve performance further if you use compile time evaluation. It is useful in cases when the data that you want to use are not changing with each run of the template. Think of it as defines or constant variables.
+<p>It is also used to statically compile partials. This comes in handy when you want to include similar header and footer on multiple pages. doT also allows to customize partial right from the template that will include it.</p> Check <a href="https://github.com/olado/doT/blob/master/examples/advancedsnippet.txt">advanced sample</a> and <a href="https://github.com/olado/doT/blob/master/examples/browsersample.html">one more sample</a> for hints on how to use defines and partials.
+
 <h2>Benchmarks</h2>
 <p>
 <a href="http://jsperf.com/dom-vs-innerhtml-based-templating">See</a> how doT.js performace measures up versus all other engines.
@@ -106,6 +107,7 @@ To run the benchmarks for measuring compilation speed:
 <br/>
 With node: node benchmarks/compileBench.js
 </div>
+
 <h2>Installation</h2>
 <h3>For node.js</h3>
 <p>If you plan to use doT with node.js, you can install doT with npm:
@@ -115,15 +117,6 @@ Then use require('dot') in your code.
 <h3>For browsers</h3>
 Include the javascript file in your source:
 <p><code>&lt;script type="text/javascript" src="doT.js"&gt;&lt;/script&gt;</code></p>
-<h2>Sample</h2>
-<pre><code>// 1. Compile template function
-var tempFn = doT.template("&lt;h1&gt;Here is a sample template {{=it.foo}} &lt;/h1&gt;");
-// 2. Use template function as many times as you like
-var resultText = tempFn({foo: 'with doT'});
-</code></pre>
-	<p>Basic template sample is <a href="https://github.com/olado/doT/blob/master/examples/snippet.txt">here</a>.</p>
-	<p>Advanced template sample is <a href="https://github.com/olado/doT/blob/master/examples/advancedsnippet.txt">here</a>.</p>
-
 
 <h2>API</h2>
 <h3>doT.templateSettings - default compilation settings</h3>
@@ -134,35 +127,40 @@ You can customize doT by changing compilation settings. Here are the default set
   encode:      /\{\{!([\s\S]+?)\}\}/g,
   use:         /\{\{#([\s\S]+?)\}\}/g,
   define:      /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
-  varname:     'it',
-  strip :      true,
-  append:      true
+  conditional: /\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,
+  iterate:     /\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
+  varname: 'it',
+  strip: true,
+  append: true,
+  selfcontained: false
 };
 </pre></code>
-If you want to use your own delimiters, you can change RegEx for 'evaluate', 'interpolate', 'encode', 'use' and 'define'.
+If you want to use your own delimiters, you can modify RegEx in doT.templateSettings to your liking.
 <p>Here is the list of default delimiters:</p>
-<ul>
-<li>
-		{{= }} for interpolation
-</li><li>
-		{{  }} for evaluation
-</li><li>
-		{{! }} for interpolation with encoding
-</li><li>
-		{{# }} for compile-time evaluation/includes and partials
-</li><li>
-		{{## #}} for compile-time defines
-</li>
-</ul>
+<code>
+<table>
+<tbody>
+<tr><td>{{  }}</td><td>for evaluation</td></tr>
+<tr><td>{{= }}</td><td>for interpolation</td></tr>
+<tr><td>{{! }}</td><td>for interpolation with encoding</td></tr>
+<tr><td>{{# }}</td><td>for compile-time evaluation/includes and partials</td></tr>
+<tr><td>{{## #}}</td><td>for compile-time defines</td></tr>
+<tr><td>{{? }}</td><td>for conditionals</td></tr>
+<tr><td>{{~ }}</td><td>for array iteration</td></tr>
+</tbody>
+</table>
+</code>
 <p>
 By default, the data in the template must be referenced with 'it'. To change the default  variable name, modify setting 'varname'. For example, if you set 'varname' to "foo, bar" you will be able to pass 2 data instances and refer to them from the template by foo and bar.</p>
 <p>
-	To control whitespace use 'strip' option, true - to strip, false - to preserve.
+To control whitespace use 'strip' option, true - to strip, false - to preserve.
 </p>
 <p>
-	'append' is a performance optimization setting. It allows to tweak performance, depending on the javascript engine used and size of the template, it may produce better results with append set to false.
+'append' is a performance optimization setting. It allows to tweak performance, depending on the javascript engine used and size of the template, it may produce better results with append set to false.
 </p>
-
+<p>
+If 'selfcontained' is true, doT will produce functions that have no dependencies on doT. In general, generated functions have no dependencies on doT, with the exception for encodeHTML and it is only added if encoding is used. If 'selfcontained' is true and template needs encoding, encodeHTML function will be included in the generated template function.
+</p>
 
 <h3>doT.template - template compilation function</h3>
 <p>Call this function to compile your template into a function.</p>
@@ -176,19 +174,27 @@ def - data for compile time evaluation, see <a href="https://github.com/olado/do
 </li></ul>
 By default, the produced function expects one parameter - data - with the name 'it'. The names and number of parameters can be changed by changing doT.templateSettings.varname </p>
 
-<h4>Compile time evaluation vs Runtime evaluation</h4>
-You can improve performance if you use compile time evaluation. It is useful in cases when the data that you want to use are not changing with each run of the template. Think of it as defines or constant variables.
-<p>It is also used to statically compile partials. This comes handy when you want to include similar header and footer on multiple pages. doT also allows to customize partial right from the template that will include it.</p> Check <a href="https://github.com/olado/doT/blob/master/examples/advancedsnippet.txt">advanced sample</a> for hints on how to use defines and partials.
-
-<h3>Issues</h3>
+<h2>Issues</h2>
 <a href="https://github.com/olado/doT/issues">github.com/olado/doT/issues</a>
 
-<h3>History</h3>
+<h2>History</h2>
 First released on January 10, 2011
-<br/>Latest version: 0.1.6 June 17, 2011
+<br/>Latest version: 0.2.0 April 29, 2012
 
-<h3>Author</h3>
+<h2>Author</h2>
 <a href="http://twitter.com/olado">@olado</a>
 
+<div style="margin-top:20px">doT.js is an open source component of <a href="http://bebedo.com">bebedo.com</a>, MIT license</div>
+
 </body>
+<script type="text/javascript" src="https://raw.github.com/olado/doT/master/doT.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://bestiejs.github.com/json3/lib/json3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+(function() {var samples = {'interpolation': { template:"<div>Hi {{=it.name}}!</div>\n<div>{{=it.age || ''}}</div>", data: { name:"Jake", age:31} },'evaluation': { template:"{{ for(var prop in it) { }}\n<div>{{=prop}}</div>\n{{ } }}", data: {name:"Jake", age:31, mother:"Kate", father:"John", interests:['basketball','hockey','photography'], contact:{email:"jake@xyz.com", phone:"999999999"} } },'partials': { template:"{{##def.snippet:\n<div>{{=it.name}}</div>{{#def.joke}}\n#}}\n\n{{#def.snippet}}", data: { name:"Jake", age:31}, def: {joke:"<div>{{=it.name}} who?</div>"} },'conditionals': { template:"{{? it.name }}\n<div>Oh, I love your name, {{=it.name}}!</div>\n{{?? it.age === 0}}\n<div>Guess nobody named you yet!</div>\n{{??}}\nYou are {{=it.age}} and still don't have a name?\n{{?}}", data: { name:"Jake", age:31} },'arrays': { template:"{{~it.array :value:index}}\n<div>{{=value}}!</div>\n{{~}}", data:{array: ["banana","apple","orange"]} },'encode': { template:"Visit {{!it.uri}}", data:{uri:"http://bebedo.com/?keywords=Yoga"} }};var br = $('#samples .result'), bf = $('#samples .function'), bdef = $('#samples .defines'), tg = $('.templategroup'),bt = $('#samples .template'), bd = $('#samples .data'), bs = $('#sampletabs'), data = {}, def, fn;function onTemplate(tmpl) {var text, error;try {var tmpdef = $.extend({}, def);fn = text = doT.template(tmpl, undefined, tmpdef);} catch(e) {fn = undefined;error = text = "Template has an error: " + e;}bf.html(encodeHTML(text.toString()));br.html(error ? "Fix the template" : encodeHTML(fn(data)).replace(/\n/g,"<br/>"));}function newSample(s) {$('ul .active').removeClass("active");$("#x"+s).addClass("active");var sample = samples[s];data = $.extend({},sample.data);def = sample.def ? $.extend({},sample.def) : undefined;if (def) {bdef.val(JSON.stringify(def));tg.addClass("withdefs");} else {tg.removeClass("withdefs");bdef.val("");}bt.val(sample.template);bd.val(JSON.stringify(sample.data));onTemplate(sample.template);}bt.keyup(function() { onTemplate(this.value);});bdef.keyup(function() {var error;try {eval("def=("+ this.value +")");} catch(e) {def = undefined;error = "Defs error: " + e;}onTemplate(bt.val());});bd.keyup(function() {var error;try {eval("data=("+ this.value +")");} catch(e) {data = {};error = "Data error: " + e;}br.html(error ? "Fix the template" : encodeHTML(fn(data)).replace(/\n/g,"<br/>"));});$('#strip').change(function() {doT.templateSettings.strip=this.checked;onTemplate(bt.val());});bs.click(function(event) {newSample(event.target.id.substring(1));});var tmp='';for(var s in samples) {if (samples.hasOwnProperty(s)) {tmp+="<li id='x"+s+"'>"+s+"</li>";}}bs.html(tmp);newSample('interpolation');}());
+var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-31289343-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
+</script>
 </html>
