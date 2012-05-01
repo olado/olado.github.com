@@ -118,6 +118,12 @@ Then use require('dot') in your code.
 Include the javascript file in your source:
 <p><code>&lt;script type="text/javascript" src="doT.js"&gt;&lt;/script&gt;</code></p>
 
+<h2>Sample</h2>
+<div>// 1. Compile template function</div>
+<code>var tempFn = doT.template("&lt;h1&gt;Here is a sample template {{=it.foo}}&lt;/h1&gt;");</code>
+<div style="margin-top:10px">// 2. Use template function as many times as you like</div>
+<code>var resultText = tempFn({foo: 'with doT'});</code>
+
 <h2>API</h2>
 <h3>doT.templateSettings - default compilation settings</h3>
 You can customize doT by changing compilation settings. Here are the default settings:
@@ -139,6 +145,7 @@ If you want to use your own delimiters, you can modify RegEx in doT.templateSett
 <p>Here is the list of default delimiters:</p>
 <code>
 <table>
+<col width="66"/>
 <tbody>
 <tr><td>{{  }}</td><td>for evaluation</td></tr>
 <tr><td>{{= }}</td><td>for interpolation</td></tr>
