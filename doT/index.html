@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="description" content="doT.js - the fastest and concise javascript template engine for Node.js and browsers"/>
 	<style>
 	body{background-color:#f4f4f4;color:#555;max-width:800px;padding:20px;font-size:16px;font-weight:200;margin:0 auto;font-family:Helvetica Neue,arial,verdana}h1{color:#708090;text-shadow:0 1px 2px #fff;font-size:4em;text-align:center}.subtitle{text-align:center;margin-bottom:60px}h2{text-shadow:0 1px 2px #fff}h2 span{font-weight:200;font-size:14px}a{color:#2B80FF}.smaller{font-size:.8em}h4{margin:4px 0;font-weight:400;font-size:20px}textarea{border:1px solid lightgrey;outline:none;font-size:14px;width:96%;height:210px;padding:10px;text-align:left}.templategroup,.datagroup,.functiongroup,.resultgroup{width:48%;margin:4px 2% 4px 0;float:left;min-width:300px}.function,.result{background:#DDD;height:212px;padding:10px;font-size:14px;overflow-y:auto}.definegroup{display:none}.templategroup.withdefs .definegroup{display:block}.templategroup.withdefs .template{height:90px}textarea.defines{height:60px}.stripgroup{padding-top:8px;width:160px;float:left}code{font-size:14px;font-weight:bold}#sampletabs{list-style:none;margin:0;padding:0}#sampletabs li{float:left;margin:4px;padding:4px 8px;background:#DDD;cursor:pointer}#sampletabs li.active{background:#2B80FF;color:#FFF}@media all and (max-width:740px){.templategroup,.datagroup,.functiongroup,.resultgroup{width:100%;margin-right:0}pre{overflow-x:scroll}}
@@ -186,13 +186,70 @@ def - data for compile time evaluation, see <a href="https://github.com/olado/do
 </li></ul>
 By default, the produced function expects one parameter - data - with the name 'it'. The names and number of parameters can be changed by changing doT.templateSettings.varname </p>
 
+<h3>Node module supports auto-compilation of dot templates</h3>
+
+<p>You can precompile all your templates into modules compatible with commonJS, browsers and AMD.</p>
+
+<pre><code>var dots = require("dot").process({ path: "./views"});
+</code></pre>
+
+<p>This will compile <b>.def</b>, <b>.dot</b>, <b>.jst</b> files found under the specified path.
+Details</p>
+
+<ul class="task-list">
+<li>Template files can have multiple extensions at the same time.</li>
+<li>Files with <b>.def</b> extension can be included in other files via {{#def.name}}</li>
+<li>Files with <b>.dot</b> extension are compiled into functions with the same name and
+can be accessed as render.&lt;filename&gt;</li>
+<li>Files with <b>.jst</b> extension are compiled into .js files. Produced .js file can be
+loaded as a commonJS, AMD module, or just installed into a global variable (default is set to window.render)</li>
+<li>All inline defines defined in the <b>.jst</b> file are
+compiled into separate functions and are available via render.&lt;filename&gt;.&lt;definename&gt;</li>
+<li>It ignores sub-directories.</li>
+</ul>
+
+<p>Basic usage:</p>
+
+<pre><code>	var dots = require("dot").process({path: "./views"});
+	// using .jst files
+	var render = require('./views/mytemplate');
+	render({foo:"hello world"});
+	// using .dot files
+	dots.mydottemplate({it: "dot"});
+</code></pre>
+
+<p>The above snippet will:</p>
+
+<ul class="task-list">
+<li>Compile all templates in views folder (.dot, .def, .jst)</li>
+<li>Place .js files compiled from .jst templates into the same folder. These files can be used with require, i.e. require("./views/mytemplate")</li>
+<li>Return an object with functions compiled from .dot templates as its properties</li>
+<li>Render mytemplate template</li>
+<li>Note: compiled files can also be used in the browser</li>
+</ul>
+See <a href="https://github.com/olado/doT/tree/master/examples/express">code example</a>, note there is an index.js file in <a href="https://github.com/olado/doT/tree/master/examples/express/lib/render">output directory</a>. It allows you to do things like:
+<pre>
+<code>	var render = require('./views');
+	render.templateOne(data);
+	render.templateTwo(data);
+</code>
+</pre>
+
+<h3>There is a CLI tool that does the same compilation</h3>
+<pre><code>./bin/dot-packer -s examples/views -d out/views
+</code></pre>
+
+
+<h3>Example for express</h3>
+Many people are using doT with express.
+<br/>I added an example of the best way to do it: <a href="https://github.com/olado/doT/tree/master/examples/express">doT with express</a>
+
 <h2>Issues</h2>
 <a href="https://github.com/olado/doT/issues">github.com/olado/doT/issues</a>
 
 <h2>History</h2>
 First released on January 10, 2011
-<br/>Stable version: 0.2.0 April 29, 2012
-<br/>Latest version: 1.0.1 September 6, 2013 (todo: update docs for 1.0.x)
+<br/>Latest version: 1.0.3 December 2, 2014
 
 <h2>Author</h2>
 <a href="http://milq.com/p/olado">@olado</a>
@@ -207,7 +264,7 @@ First released on January 10, 2011
 <![endif]-->
 
 <script type="text/javascript">
-(function() {var samples = {'interpolation': { template:"<div>Hi {{=it.name}}!</div>\n<div>{{=it.age || ''}}</div>", data: { name:"Jake", age:31} },'evaluation': { template:"{{ for(var prop in it) { }}\n<div>{{=prop}}</div>\n{{ } }}", data: {name:"Jake", age:31, mother:"Kate", father:"John", interests:['basketball','hockey','photography'], contact:{email:"jake@xyz.com", phone:"999999999"} } },'partials': { template:"{{##def.snippet:\n<div>{{=it.name}}</div>{{#def.joke}}\n#}}\n\n{{#def.snippet}}", data: { name:"Jake", age:31}, def: {joke:"<div>{{=it.name}} who?</div>"} },'conditionals': { template:"{{? it.name }}\n<div>Oh, I love your name, {{=it.name}}!</div>\n{{?? it.age === 0}}\n<div>Guess nobody named you yet!</div>\n{{??}}\nYou are {{=it.age}} and still don't have a name?\n{{?}}", data: { name:"Jake", age:31} },'arrays': { template:"{{~it.array :value:index}}\n<div>{{=value}}!</div>\n{{~}}", data:{array: ["banana","apple","orange"]} },'encode': { template:"Visit {{!it.uri}}", data:{uri:"https://github.com/olado/doT"} }};var br = $('#samples .result'), bf = $('#samples .function'), bdef = $('#samples .defines'), tg = $('.templategroup'),bt = $('#samples .template'), bd = $('#samples .data'), bs = $('#sampletabs'), data = {}, def, fn;function onTemplate(tmpl) {var text, error;try {var tmpdef = $.extend({}, def);fn = text = doT.template(tmpl, undefined, tmpdef);} catch(e) {fn = undefined;error = text = "Template has an error: " + e;}bf.html(text.toString().encodeHTML());br.html(error ? "Fix the template" : (fn(data)||'').toString().encodeHTML().replace(/\n/g,"<br/>"));}function newSample(s) {$('ul .active').removeClass("active");$("#x"+s).addClass("active");var sample = samples[s];data = $.extend({},sample.data);def = sample.def ? $.extend({},sample.def) : undefined;if (def) {bdef.val(JSON.stringify(def));tg.addClass("withdefs");} else {tg.removeClass("withdefs");bdef.val("");}bt.val(sample.template);bd.val(JSON.stringify(sample.data));onTemplate(sample.template);}bt.keyup(function() { onTemplate(this.value);});bdef.keyup(function() {var error;try {eval("def=("+ this.value +")");} catch(e) {def = undefined;error = "Defs error: " + e;}onTemplate(bt.val());});bd.keyup(function() {var error;try {eval("data=("+ this.value +")");} catch(e) {data = {};error = "Data error: " + e;}br.html(error ? "Fix the template" : (fn(data)||'').toString().encodeHTML().replace(/\n/g,"<br/>"));});$('#strip').change(function() {doT.templateSettings.strip=this.checked;onTemplate(bt.val());});bs.click(function(event) {newSample(event.target.id.substring(1));});var tmp='';for(var s in samples) {if (samples.hasOwnProperty(s)) {tmp+="<li id='x"+s+"'>"+s+"</li>";}}bs.html(tmp);newSample('interpolation');}());
+(function() {var encodeHTML = window._encodeHTML || doT.encodeHTMLSource(),samples = {'interpolation': { template:"<div>Hi {{=it.name}}!</div>\n<div>{{=it.age || ''}}</div>", data: { name:"Jake", age:31} },'evaluation': { template:"{{ for(var prop in it) { }}\n<div>{{=prop}}</div>\n{{ } }}", data: {name:"Jake", age:31, mother:"Kate", father:"John", interests:['basketball','hockey','photography'], contact:{email:"jake@xyz.com", phone:"999999999"} } },'partials': { template:"{{##def.snippet:\n<div>{{=it.name}}</div>{{#def.joke}}\n#}}\n\n{{#def.snippet}}", data: { name:"Jake", age:31}, def: {joke:"<div>{{=it.name}} who?</div>"} },'conditionals': { template:"{{? it.name }}\n<div>Oh, I love your name, {{=it.name}}!</div>\n{{?? it.age === 0}}\n<div>Guess nobody named you yet!</div>\n{{??}}\nYou are {{=it.age}} and still don't have a name?\n{{?}}", data: { name:"Jake", age:31} },'arrays': { template:"{{~it.array :value:index}}\n<div>{{=value}}!</div>\n{{~}}", data:{array: ["banana","apple","orange"]} },'encode': { template:"Visit {{!it.uri}}", data:{uri:"https://github.com/olado/doT"} }};var br = $('#samples .result'), bf = $('#samples .function'), bdef = $('#samples .defines'), tg = $('.templategroup'),bt = $('#samples .template'), bd = $('#samples .data'), bs = $('#sampletabs'), data = {}, def, fn;function onTemplate(tmpl) {var text, error;try {var tmpdef = $.extend({}, def);fn = text = doT.template(tmpl, undefined, tmpdef);} catch(e) {fn = undefined;error = text = "Template has an error: " + e;}bf.html(encodeHTML(text));br.html(error ? "Fix the template" : encodeHTML(fn(data)).replace(/\n/g,"<br/>"));}function newSample(s) {$('ul .active').removeClass("active");$("#x"+s).addClass("active");var sample = samples[s];data = $.extend({},sample.data);def = sample.def ? $.extend({},sample.def) : undefined;if (def) {bdef.val(JSON.stringify(def));tg.addClass("withdefs");} else {tg.removeClass("withdefs");bdef.val("");}bt.val(sample.template);bd.val(JSON.stringify(sample.data));onTemplate(sample.template);}bt.keyup(function() { onTemplate(this.value);});bdef.keyup(function() {var error;try {eval("def=("+ this.value +")");} catch(e) {def = undefined;error = "Defs error: " + e;}onTemplate(bt.val());});bd.keyup(function() {var error;try {eval("data=("+ this.value +")");} catch(e) {data = {};error = "Data error: " + e;}br.html(error ? "Fix the template" : encodeHTML(fn(data)).replace(/\n/g,"<br/>"));});$('#strip').change(function() {doT.templateSettings.strip=this.checked;onTemplate(bt.val());});bs.click(function(event) {newSample(event.target.id.substring(1));});var tmp='';for(var s in samples) {if (samples.hasOwnProperty(s)) {tmp+="<li id='x"+s+"'>"+s+"</li>";}}bs.html(tmp);newSample('interpolation');}());
 var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-31289343-1']);_gaq.push(['_trackPageview']);(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
 </script>
 </html>
