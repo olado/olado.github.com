@@ -186,6 +186,13 @@ def - data for compile time evaluation, see <a href="https://github.com/olado/do
 </li></ul>
 By default, the produced function expects one parameter - data - with the name 'it'. The names and number of parameters can be changed by changing doT.templateSettings.varname </p>
 
+<h3>doT.log - option to enable/disable logging</h3>
+<p>This option is by default true, you can disable logging as below:</p>
+<code><pre>
+var dots = require('dot');
+dots.log = false;
+</pre></code>
+
 <h3>Node module supports auto-compilation of dot templates</h3>
 
 <p>You can precompile all your templates into modules compatible with commonJS, browsers and AMD.</p>
